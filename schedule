@@ -1,0 +1,138 @@
+<DOCTYPE HTML>
+  
+  <html>
+    <head>
+      <title>table2</title>
+      <link rel="stylesheet" type="text/css" href="global.css" />
+      <meta name="viewport" content="width=device-width, initial-scale: 1.0, user-scale=0" />
+    </head>
+    
+    <body>
+
+  <div id="header">
+      <div class="logo"><a href="#">Owlie<span>Scheduler</span></a></div>
+  </div>
+
+    <a class="mobile" href="#">MENU</a>
+
+  <div id="container">
+    
+    <div class="sidebar">
+      <ul id="nav">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a class="selected" href="schedule.html">Your Schedule</a></li>
+        <li><a href="#">Friends</a></li>
+        <li><a href="#">Bla</a></li>
+        <li><a href="#">Bla2</a></li>
+      </ul>
+    </div>
+
+    <div class ="content">
+
+      <div id="dash_title">
+        Schedule
+      </div>
+
+
+      <div id="box">
+        <div class="box-top">Please pick out which time periods you're busy</div>
+      </div>
+
+      <script type="text/javascript">
+
+        document.write('<table id="mytable">');
+        document.write('<tr>');
+        document.write('<th>Time Slot</th>');
+        document.write('<th>Monday</th>');
+        document.write('<th>Tuesday</th>');
+        document.write('<th>Wednesday</th>');
+        document.write('<th>Thursday</th>'); 
+        document.write('<th>Friday</th>');
+        document.write('<th>Saturday</th>');
+        document.write('<th>Sunday</th>');
+        document.write('</tr>');
+
+        var increment=8;
+        var temp;
+        var time;
+        var cellnumber=0;
+        var my_cells=[];
+
+        for(i=1;i<=16.5*2;i++)
+        {
+          if(increment>=12 && increment!=24)
+          {
+            time="pm"; 
+          }
+          else
+          {
+            time="am";
+          }
+          
+          if(increment%1==0)
+          {
+            temp=increment;
+          }
+          else
+          {
+            temp=increment-0.5+":30";
+          }
+
+          document.write('<td id="r">'+temp+' '+time+'</td>');     <!--the time-->
+          for(j=1;j<=7;j++)
+          {
+            document.write('<td onclick="change(this)" id="h" style="color:white;">'+cellnumber+'</td>');   <!--the cell number-->
+            cellnumber=cellnumber+1;
+          }
+          document.write('</tr>\n');
+          increment=increment+0.5; 
+        }
+
+        function change(cell)
+        {
+          if (cell.style.backgroundColor=='white')
+          {
+      cell.style.backgroundColor='teal';
+       cell.style.color='teal';
+          }
+          else if(cell.style.backgroundColor=='teal')
+          {
+            cell.style.backgroundColor='white';
+            cell.style.color='white';
+          }
+          else
+            {
+    cell.style.backgroundColor='teal';
+              cell.style.color='teal';
+            }
+        }
+        document.write('</table>');
+              
+        var mimi=document.getElementById("mytable");
+
+        function foo2()
+        {
+          for(j=1;j<34;j++)
+          {
+            for(i=0;i<7;i++)
+            {
+              if(mimi.rows[j].cells[i].style.backgroundColor=="teal")
+              {
+                my_cells.push(mimi.rows[j].cells[i].innerHTML);    
+              }
+            }
+          }
+          document.write(my_cells);
+        }
+        
+        document.write("<br>");
+        
+        document.write("<center>Please submit once you are done.</center>");
+        
+        document.write('<center><input type="submit" value="submit" onclick="return foo2();"/></center>');
+        
+      </script>
+</div>
+</div>
+    </body>
+  </html>
